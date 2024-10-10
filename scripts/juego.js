@@ -22,6 +22,7 @@ class Sprite{
         }
         this.color=color
         this.isAttacking=false
+        this.health=100
     }
 
     draw(){
@@ -144,13 +145,15 @@ function animate(){
     if( colisionRectangulo({rectangle1:player,rectangle2:enemy})
         && player.isAttacking){
         player.isAttacking=false
-        console.log("colision")
+        enemy.health-=20
+        document.querySelector('#vida2').style.width=enemy.health + '%';
     }
 
     if( colisionRectangulo({rectangle1:enemy,rectangle2:player})
         && enemy.isAttacking){
         enemy.isAttacking=false
-        console.log("t pego el otro")
+        player.health-=20
+        document.querySelector('#vida1').style.width=player.health + '%';
     }
 }
 

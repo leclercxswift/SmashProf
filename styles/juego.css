@@ -1,6 +1,37 @@
+*{
+    box-sizing: border-box;
+}
 body, html {
     margin: 0;
     padding: 0;
     overflow: hidden; /* Evitar scroll */
     height: 100%;
+}
+.cont{
+    padding:20px;
+}
+.contvida{
+    height: 30px;
+    width: 100%;
+}
+.vida{
+    background-color: yellow;
+    height: 30px;
+}
+.p1{
+    top: 0;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+}
+.p2{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.temporizador{
+    background-color: red;
+    height: 100px;
+    width: 100px;
 }
