@@ -4,75 +4,14 @@ const c = canvas.getContext("2d");
 const gravity = 0.7;
 let playerBottom = 0;
 
-class Sprite {
-    constructor({ position, velocity, color, offset }) {
-        this.position = position;
-        this.velocity = velocity;
-        this.width = 50;
-        this.height = 150;
-        this.lastKey;
-        this.attackBox = {
-            position: {
-                x: this.position.x,
-                y: this.position.y
-            },
-            offset,
-            width: 100,
-            height: 50,
-        };
-        this.color = color;
-        this.isAttacking = false;
-        this.health = 100;
-        this.isOnGround = false;
-        this.jumped = false;     
-        this.canPassPlatforms = false; 
-        this.canLower = true;   
-        this.isLowering = false; 
-    }
-
-    draw() {
-        c.fillStyle = this.color;
-        c.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-        if (this.isAttacking) {
-            c.fillStyle = "chartreuse";
-            c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        }
-    }
-
-    update() {
-        this.draw();
-        this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-        this.attackBox.position.y = this.position.y;
-
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
-
-        if (this.position.x < 0) this.position.x = 0; 
-        if (this.position.x + this.width > canvas.width) this.position.x = canvas.width - this.width; 
-
-        if (!this.canPassPlatforms) { 
-            if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-                this.position.y = canvas.height - this.height; 
-                this.velocity.y = 0;
-                this.isOnGround = true;  
-                this.jumped = false;     
-            } else {
-                this.velocity.y += gravity; 
-                this.isOnGround = false;    
-            }
-        } else {
-            this.velocity.y = 0; 
-        }
-    }
-
-    attack() {
-        this.isAttacking = true;
-        setTimeout(() => {
-            this.isAttacking = false;
-        }, 100);
-    }
-}
+const background=new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    imageSrc: "../assets/trialback.png",
+    isBackground: true
+})
 
 function resizeCanvasAndPlatforms() {
     canvas.width = window.innerWidth;
@@ -113,7 +52,7 @@ function colisionConPlataforma(player) {
     
 }
 
-const player = new Sprite({
+const player = new FighterSprite({
     position: {
         x: 20,
         y: 620
@@ -129,7 +68,7 @@ const player = new Sprite({
     }
 });
 
-const enemy = new Sprite({
+const enemy = new FighterSprite({
     position: {
         x: 1230,
         y: 620
@@ -222,11 +161,12 @@ function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
-
+    background.update();
     c.fillStyle = "#3498db"; // Color para las plataformas
     platforms.forEach(platform => {
         c.fillRect(platform.x, platform.y, platform.width, platform.height);
     });
+   
     player.update();
     enemy.update();
 
