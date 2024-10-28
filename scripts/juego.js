@@ -74,13 +74,27 @@ class Sprite {
     }
 }
 
-const platforms = [
-    { x: 100, y: 500, width: 300, height: 30 },
-    { x: 900, y: 500, width: 300, height: 30 },
-    { x: 500, y: 380, width: 300, height: 30 },
-    { x: 100, y: 260, width: 300, height: 30 },
-    { x: 900, y: 260, width: 300, height: 30 },
-];
+function resizeCanvasAndPlatforms() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    
+    const platformWidth = canvas.width * 0.2;
+    const platformHeight = canvas.height * 0.05;
+    const jumpHeight = canvas.height * 0.25;
+
+    const centerX = canvas.width / 2 - platformWidth / 2;
+    const centerY = canvas.height / 2 - platformHeight / 2;
+
+    platforms = [
+        { x: centerX, y: centerY, width: platformWidth, height: platformHeight }, // Central
+        { x: centerX - platformWidth - 50, y: centerY - jumpHeight, width: platformWidth, height: platformHeight }, // Izquierda Superior
+        { x: centerX + platformWidth + 50, y: centerY - jumpHeight, width: platformWidth, height: platformHeight }, // Derecha Superior
+        { x: centerX - platformWidth - 50, y: centerY + jumpHeight, width: platformWidth, height: platformHeight }, // Izquierda Inferior
+        { x: centerX + platformWidth + 50, y: centerY + jumpHeight, width: platformWidth, height: platformHeight }  // Derecha Inferior
+    ];
+}
+
 
 function colisionConPlataforma(player) {
     for (let platform of platforms) {
@@ -170,10 +184,49 @@ function colisionRectangulo({ rectangle1, rectangle2 }) {
     );
 }
 
+function determineWinner ({ player, enemy, timerId }) {
+    clearTimeout(timerId);
+    document.querySelector("#displayText").style.display = 'flex'
+    if (player.health === enemy.health) {
+       
+        document.querySelector("#displayText").innerHTML = 'Empate'
+    }
+    else if (player.health > enemy.health) {
+    
+        document.querySelector("#displayText").innerHTML = 'Gana J1'
+    }
+    else if (player.health < enemy.health) {
+        
+        document.querySelector("#displayText").innerHTML = 'Gana J2'
+    }
+}
+
+let timer=60
+let timerId
+function decreaseTimer() {
+    timerId = setTimeout(decreaseTimer, 1000);
+    if (timer > 0) {
+        timer--;
+        document.querySelector("#timer").innerHTML = timer;
+    }
+
+   if (timer === 0) {
+        determineWinner({ player, enemy, timerId });
+       }
+
+}
+
+decreaseTimer();
+
 function animate() {
     window.requestAnimationFrame(animate);
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
+
+    c.fillStyle = "#3498db"; // Color para las plataformas
+    platforms.forEach(platform => {
+        c.fillRect(platform.x, platform.y, platform.width, platform.height);
+    });
     player.update();
     enemy.update();
 
@@ -211,9 +264,13 @@ function animate() {
         enemy.attack();
         keys.Enter.pressed = false; 
     }
+    //terminar juego por vida
+    if (player.health <= 0 || enemy.health <= 0) {
+        determineWinner({ player, enemy, timerId });
+    }
     
 }
-
+resizeCanvasAndPlatforms();
 animate();
 
 window.addEventListener("keydown", (event) => {

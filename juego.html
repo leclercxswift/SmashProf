@@ -14,18 +14,14 @@
                 <div  class="vida w-100"></div>
                 <div id="vida1" class="p1 position-absolute bg-primary "></div>
              </div>
-            <div class="temporizador flex-shrink-0"></div>
+            <div class="temporizador flex-shrink-0 d-flex align-items-center justify-content-center" id="timer">10</div>
              <div class="contvida position-relative">
                 <div  class="vida"></div>
                 <div id="vida2" class="p2 position-absolute bg-primary "></div>
              </div>
-             <div class="platform" style="left: 100px; top: 500px;"></div>
-             <div class="platform" style="left: 900px; top: 500px;"></div>
-             <div class="platform" style="left: 500px; top: 380px;"></div>
-             <div class="platform" style="left: 100px; top: 260px;"></div>
-             <div class="platform" style="left: 900px; top: 260px;"></div>
         </div>
-        <canvas height="620" width="1300" id="canvas"></canvas>
+        <div class="position-absolute  align-items-center justify-content-center top-0 bottom-0 start-0 end-0" id="displayText">Empate</div>
+        <canvas id="canvas"></canvas>
     </div>
     
     <script src="scripts/juego.js"></script>
