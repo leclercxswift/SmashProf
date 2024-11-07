@@ -4,6 +4,8 @@ const c = canvas.getContext("2d");
 const gravity = 0.7;
 let playerBottom = 0;
 
+canvas.width = 1024
+canvas.height = 560
 const background=new Sprite({
     position: {
         x: 0,
@@ -14,9 +16,6 @@ const background=new Sprite({
 })
 
 function resizeCanvasAndPlatforms() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
     
     const platformWidth = canvas.width * 0.2;
     const platformHeight = canvas.height * 0.05;
@@ -63,9 +62,13 @@ const player = new FighterSprite({
     },
     color: "red",
     offset: {
-        x: 0,
-        y: 0
-    }
+        x: 215,
+        y: 150
+    },
+    imageSrc: "../assets/player1/Idle.png",
+    frames:8,
+    scale:2.5
+
 });
 
 const enemy = new FighterSprite({

@@ -1,19 +1,31 @@
 class Sprite {
-    constructor({ position, imageSrc, isBackground = false, scale=1 , frames = 1}) {
+    constructor({ position, imageSrc, isBackground = false, scale = 1, frames = 1, offset = { x: 0, y: 0 } }) {
         this.position = position;
-       this.image = new Image();
-       this.image.src = imageSrc;
+        this.image = new Image();
+        this.image.src = imageSrc;
         this.width = 50;
         this.height = 150;
-        this.scale = scale
+        this.scale = scale;
         this.isBackground = isBackground;
         this.frames = frames;
         this.currentFrame = 0;
         this.framesElapsed = 0;
         this.framesHold = 5;
+        this.offset = offset;
+        
+        // Marcar como no cargado inicialmente
+        this.loaded = false;
+        
+        // Evento que cambia el estado cuando la imagen se carga
+        this.image.onload = () => {
+            this.loaded = true;
+        };
     }
 
     draw() {
+        // Solo dibujar si la imagen está completamente cargada
+        if (!this.loaded) return;
+
         if (this.isBackground) {
             c.drawImage(
                 this.image,
@@ -21,47 +33,47 @@ class Sprite {
                 this.position.y,
                 canvas.width,
                 canvas.height
-            )
-        }else {
+            );
+        } else {
             c.drawImage(
                 this.image,
-                this.currentFrame * (this.image.width/this.frames),
+                this.currentFrame * (this.image.width / this.frames),
                 0,
-                this.image.width/this.frames,
-                this.image.height/this.frames,
-                this.position.x,
-                this.position.y,
-                (this.image.width/this.frames) *this.scale,
-                this.image.height *this.scale
-            )
+                this.image.width / this.frames,
+                this.image.height,
+                this.position.x-this.offset.x,
+                this.position.y-this.offset.y,
+                (this.image.width / this.frames) * this.scale,
+                this.image.height * this.scale
+            );
         }
-        
     }
 
-    update() {
-        this.draw();
-        this.framesElapsed++
+    animateFrames() {
+        this.framesElapsed++;
 
         if (this.framesElapsed % this.framesHold === 0) {
-            
-        if (this.currentFrame<this.frames-1){
-            this.currentFrame++
-        }else {
-            this.currentFrame = 0
-        } 
+            if (this.currentFrame < this.frames - 1) {
+                this.currentFrame++;
+            } else {
+                this.currentFrame = 0;
+            }
         }
-        
     }
-
-    
+    update() {
+        this.draw();
+       this.animateFrames();
+    }
 }
-class FighterSprite {
-    constructor({ position, velocity, color, offset }) {
-        this.position = position;
+class FighterSprite extends Sprite {
+    constructor({ position, velocity, color, imageSrc, isBackground = false, scale = 1, frames = 1, offset = { x: 0, y: 0 } }) {
+        // Llamamos a super solo con los argumentos esperados por Sprite
+        super({ position, imageSrc, isBackground, scale, frames, offset });
+
+        // Propiedades específicas de FighterSprite
         this.velocity = velocity;
-        this.width = 50;
-        this.height = 150;
-        this.lastKey;
+        this.color = color;
+        this.offset = offset;
         this.attackBox = {
             position: {
                 x: this.position.x,
@@ -69,30 +81,24 @@ class FighterSprite {
             },
             offset,
             width: 100,
-            height: 50,
+            height: 50
         };
-        this.color = color;
         this.isAttacking = false;
         this.health = 100;
         this.isOnGround = false;
-        this.jumped = false;     
-        this.canPassPlatforms = false; 
-        this.canLower = true;   
-        this.isLowering = false; 
-    }
+        this.jumped = false;
+        this.canPassPlatforms = false;
+        this.canLower = true;
+        this.isLowering = false;
 
-    draw() {
-        c.fillStyle = this.color;
-        c.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-        if (this.isAttacking) {
-            c.fillStyle = "chartreuse";
-            c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        }
+        // Inicialización de propiedades de animación
+        this.currentFrame = 0;
+        this.framesElapsed = 0;
+        this.framesHold = 5;
     }
 
     update() {
-        this.draw();
+        super.update();
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y;
 
