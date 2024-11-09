@@ -215,4 +215,12 @@ body {
     width:100%;
     transition:800ms ease all;
   }
+  .floating-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 200px;
+    font-size: 0.9rem;
+    z-index: 10;
+}
   
