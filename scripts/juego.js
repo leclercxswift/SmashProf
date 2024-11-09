@@ -104,8 +104,33 @@ const enemy = new FighterSprite({
     },
     color: "blue",
     offset: {
-        x: -50,
-        y: 0
+        x: 215,
+        y: 167
+    },
+    imageSrc: "../assets/enemy/Idle.png",
+    frames:4,
+    scale:2.5,
+    sprites: {
+        idle: {
+            imageSrc: "../assets/enemy/Idle.png",
+            frames: 4
+        },
+        run: {
+            imageSrc: "../assets/enemy/Run.png",
+            frames: 8
+        },
+        jump: {
+            imageSrc: "../assets/enemy/Jump.png",
+            frames: 2
+        },
+        fall: {
+            imageSrc: "../assets/enemy/Fall.png",
+            frames: 2
+        },
+        attack1: {
+            imageSrc: "../assets/enemy/Attack1.png",
+            frames: 4
+        }
     }
 });
 
@@ -215,18 +240,24 @@ function animate() {
         player.switchSprite('jump');
     } else if (player.velocity.y > 0 && !player.isOnGround) {
         player.switchSprite('fall');
-    } else if (player.isOnGround) {
-        player.switchSprite('idle');  //checkear por el flash del sprite 
-    }
+    } 
 
     //movimeinto enemigo
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && !enemy.isLowering) {
         enemy.velocity.x = -5;
+        enemy.switchSprite('run');
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && !enemy.isLowering) {
         enemy.velocity.x = 5;
+        enemy.switchSprite('run');
+    }else{  
+        enemy.switchSprite('idle');
     }
     
-    
+    if (enemy.velocity.y < 0) {
+        enemy.switchSprite('jump');
+    } else if (enemy.velocity.y > 0 && !enemy.isOnGround) {
+        enemy.switchSprite('fall');
+    } 
 
     if (colisionRectangulo({ rectangle1: player, rectangle2: enemy }) && player.isAttacking) {
         player.isAttacking = false;
