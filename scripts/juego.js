@@ -89,6 +89,10 @@ const player = new FighterSprite({
         attack1: {
             imageSrc: "../assets/player1/Attack1.png",
             frames: 6
+        },
+        takeHit: {
+            imageSrc: "../assets/player1/Take Hit.png",
+            frames: 4
         }
     },
     attackBox: {
@@ -138,7 +142,12 @@ const enemy = new FighterSprite({
         attack1: {
             imageSrc: "../assets/enemy/Attack1.png",
             frames: 4
+        },
+        takeHit: {
+            imageSrc: "../assets/enemy/Take hit.png",
+            frames: 3
         }
+        
     },
     attackBox: {
         offset: {
@@ -276,6 +285,7 @@ function animate() {
     } 
 
     if (colisionRectangulo({ rectangle1: player, rectangle2: enemy }) && player.isAttacking && player.currentFrame === 4) {
+        enemy.switchSprite('takeHit');
         player.isAttacking = false;
         enemy.health -= 20;
         document.querySelector('#vida2').style.width = enemy.health + '%';
@@ -286,6 +296,7 @@ function animate() {
     }
 
     if (colisionRectangulo({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking && enemy.currentFrame === 2) {
+        player.switchSprite('takeHit');
         enemy.isAttacking = false;
         player.health -= 20;
         document.querySelector('#vida1').style.width = player.health + '%';

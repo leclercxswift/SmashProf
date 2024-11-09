@@ -110,7 +110,7 @@ class FighterSprite extends Sprite {
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
         // Dibujar el atkbox
-        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        //c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -139,8 +139,17 @@ class FighterSprite extends Sprite {
         
     }
 
+    takeHit() {
+        this.switchSprite('takeHit');
+        this.health -= 20;
+    }
+
     switchSprite(sprite) {
+        //sobreescribir las animaciones para permitir ataque
         if (this.image === this.sprites.attack1.image && this.currentFrame < this.sprites.attack1.frames - 1) return;
+        //sobreescribir las animaciones para recibir daño
+        if (this.image === this.sprites.takeHit.image && this.currentFrame < this.sprites.takeHit.frames - 1) return;
+
         switch (sprite) {
             case 'idle':
                 if (this.image !== this.sprites.idle.image){
@@ -180,6 +189,13 @@ class FighterSprite extends Sprite {
                     this.currentFrame = 0;
                 }
                 break;
+            case 'takeHit':
+                    if (this.image !== this.sprites.takeHit.image){
+                        this.image = this.sprites.takeHit.image;
+                        this.frames=this.sprites.takeHit.frames;
+                        this.currentFrame = 0;
+                    }
+                    break;
         }
     }
 }
