@@ -66,7 +66,7 @@ class Sprite {
     }
 }
 class FighterSprite extends Sprite {
-    constructor({ position, velocity, color, imageSrc, isBackground = false, scale = 1, frames = 1, offset = { x: 0, y: 0 }, sprites }) {
+    constructor({ position, velocity, color, imageSrc, isBackground = false, scale = 1, frames = 1, offset = { x: 0, y: 0 }, sprites, attackBox = { offset: { }, width: undefined, height: undefined } }) {
         // Llamamos a super solo con los argumentos esperados por Sprite
         super({ position, imageSrc, isBackground, scale, frames, offset });
 
@@ -79,9 +79,9 @@ class FighterSprite extends Sprite {
                 x: this.position.x,
                 y: this.position.y
             },
-            offset,
-            width: 100,
-            height: 50
+            offset: attackBox.offset,
+            width: attackBox.width,
+            height: attackBox.height
         };
         this.isAttacking = false;
         this.health = 100;
@@ -107,7 +107,10 @@ class FighterSprite extends Sprite {
     update() {
         super.update();
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-        this.attackBox.position.y = this.position.y;
+        this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
+
+        // Dibujar el atkbox
+        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -133,9 +136,7 @@ class FighterSprite extends Sprite {
     attack() {
         this.switchSprite('attack1');
         this.isAttacking = true;
-        setTimeout(() => {
-            this.isAttacking = false;
-        }, 100);
+        
     }
 
     switchSprite(sprite) {

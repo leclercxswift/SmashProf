@@ -90,6 +90,14 @@ const player = new FighterSprite({
             imageSrc: "../assets/player1/Attack1.png",
             frames: 6
         }
+    },
+    attackBox: {
+        offset: {
+            x: 100,
+            y: 50
+        },
+        width: 160,
+        height: 50
     }
 });
 
@@ -131,6 +139,14 @@ const enemy = new FighterSprite({
             imageSrc: "../assets/enemy/Attack1.png",
             frames: 4
         }
+    },
+    attackBox: {
+        offset: {
+            x: -170,
+            y: 50
+        },
+        width: 170,
+        height: 50
     }
 });
 
@@ -259,22 +275,27 @@ function animate() {
         enemy.switchSprite('fall');
     } 
 
-    if (colisionRectangulo({ rectangle1: player, rectangle2: enemy }) && player.isAttacking) {
+    if (colisionRectangulo({ rectangle1: player, rectangle2: enemy }) && player.isAttacking && player.currentFrame === 4) {
         player.isAttacking = false;
         enemy.health -= 20;
         document.querySelector('#vida2').style.width = enemy.health + '%';
     }
+    //cuando el j1 falla
+    if(player.isAttacking && player.currentFrame === 4) {
+        player.isAttacking = false;
+    }
 
-    if (colisionRectangulo({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking) {
+    if (colisionRectangulo({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking && enemy.currentFrame === 2) {
         enemy.isAttacking = false;
         player.health -= 20;
         document.querySelector('#vida1').style.width = player.health + '%';
     }
-
-    if (keys.Enter.pressed) { 
-        enemy.attack();
-        keys.Enter.pressed = false; 
+    //cuando el j2 falla
+    if(enemy.isAttacking && enemy.currentFrame === 2) {
+        enemy.isAttacking = false;
     }
+
+
     //terminar juego por vida
     if (player.health <= 0 || enemy.health <= 0) {
         determineWinner({ player, enemy, timerId });
