@@ -35,6 +35,7 @@ function resizeCanvasAndPlatforms() {
 
 
 function colisionConPlataforma(player) {
+    
     for (let platform of platforms) {
         if (
             player.position.x + player.width >= platform.x &&
@@ -192,6 +193,8 @@ function animate() {
 
     player.velocity.x = 0;
     enemy.velocity.x = 0;
+    colisionConPlataforma(player);
+    colisionConPlataforma(enemy); 
     //movimiento jugador 1
     
     if (keys.a.pressed && player.lastKey === 'a' && !player.isLowering) {
@@ -206,9 +209,10 @@ function animate() {
 
     if (player.velocity.y < 0) {
         player.switchSprite('jump');
-    } else if (player.velocity.y > 0 )// + player is on ground para las plataformasd
-     {
-        //player.switchSprite('fall');
+    } else if (player.velocity.y > 0 && !player.isOnGround) {
+        player.switchSprite('fall');
+    } else if (player.isOnGround) {
+        player.switchSprite('idle');  //checkear por el flash del sprite 
     }
 
     //movimeinto enemigo
@@ -218,8 +222,7 @@ function animate() {
         enemy.velocity.x = 5;
     }
     
-    colisionConPlataforma(player);
-    colisionConPlataforma(enemy); 
+    
 
     if (colisionRectangulo({ rectangle1: player, rectangle2: enemy }) && player.isAttacking) {
         player.isAttacking = false;
