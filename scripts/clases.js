@@ -136,4 +136,43 @@ class FighterSprite extends Sprite {
             this.isAttacking = false;
         }, 100);
     }
+
+    switchSprite(sprite) {
+        switch (sprite) {
+            case 'idle':
+                if (this.image !== this.sprites.idle.image){
+                    this.image = this.sprites.idle.image;
+                    this.frames=this.sprites.idle.frames;
+                    this.currentFrame = 0;
+                }
+                
+                break;
+            case 'run':
+                if (this.image !== this.sprites.run.image){
+                    this.image = this.sprites.run.image;
+                    this.frames=this.sprites.run.frames;
+                    this.currentFrame = 0;
+                }
+                
+                break;
+            case 'jump':
+                if (this.image !== this.sprites.jump.image){
+                    this.image = this.sprites.jump.image;
+                    this.frames=this.sprites.jump.frames;
+                    this.currentFrame = 0;
+                }
+                
+                break;
+            case 'fall':
+                if (this.image !== this.sprites.fall.image){
+                    this.image = this.sprites.fall.image;
+                    this.frames=this.sprites.fall.frames;
+                    this.currentFrame = 0;
+                }
+                break;
+            case 'attack1':
+                if (this.image !== this.sprites.attack1.image) this.image = this.sprites.attack1.image;
+                break;
+        }
+    }
 }

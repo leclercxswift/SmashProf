@@ -76,6 +76,14 @@ const player = new FighterSprite({
         run: {
             imageSrc: "../assets/player1/Run.png",
             frames: 8
+        },
+        jump: {
+            imageSrc: "../assets/player1/Jump.png",
+            frames: 2
+        },
+        fall: {
+            imageSrc: "../assets/player1/Fall.png",
+            frames: 2
         }
     }
 });
@@ -184,16 +192,26 @@ function animate() {
 
     player.velocity.x = 0;
     enemy.velocity.x = 0;
-
-    player.image = player.sprites.idle.image;
+    //movimiento jugador 1
+    
     if (keys.a.pressed && player.lastKey === 'a' && !player.isLowering) {
         player.velocity.x = -5;
-        player.image = player.sprites.run.image;
+        player.switchSprite('run');
     } else if (keys.d.pressed && player.lastKey === 'd' && !player.isLowering) {
         player.velocity.x = 5;
-        player.image = player.sprites.run.image;
+        player.switchSprite('run');
+    }else{
+        player.switchSprite('idle');
     }
 
+    if (player.velocity.y < 0) {
+        player.switchSprite('jump');
+    } else if (player.velocity.y > 0 )// + player is on ground para las plataformasd
+     {
+        //player.switchSprite('fall');
+    }
+
+    //movimeinto enemigo
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && !enemy.isLowering) {
         enemy.velocity.x = -5;
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && !enemy.isLowering) {
