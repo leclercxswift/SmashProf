@@ -85,6 +85,10 @@ const player = new FighterSprite({
         fall: {
             imageSrc: "../assets/player1/Fall.png",
             frames: 2
+        },
+        attack1: {
+            imageSrc: "../assets/player1/Attack1.png",
+            frames: 6
         }
     }
 });
