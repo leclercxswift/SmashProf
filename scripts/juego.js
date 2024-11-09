@@ -67,8 +67,17 @@ const player = new FighterSprite({
     },
     imageSrc: "../assets/player1/Idle.png",
     frames:8,
-    scale:2.5
-
+    scale:2.5,
+    sprites: {
+        idle: {
+            imageSrc: "../assets/player1/Idle.png",
+            frames: 8
+        },
+        run: {
+            imageSrc: "../assets/player1/Run.png",
+            frames: 8
+        }
+    }
 });
 
 const enemy = new FighterSprite({
@@ -176,10 +185,13 @@ function animate() {
     player.velocity.x = 0;
     enemy.velocity.x = 0;
 
+    player.image = player.sprites.idle.image;
     if (keys.a.pressed && player.lastKey === 'a' && !player.isLowering) {
         player.velocity.x = -5;
+        player.image = player.sprites.run.image;
     } else if (keys.d.pressed && player.lastKey === 'd' && !player.isLowering) {
         player.velocity.x = 5;
+        player.image = player.sprites.run.image;
     }
 
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && !enemy.isLowering) {

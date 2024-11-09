@@ -66,7 +66,7 @@ class Sprite {
     }
 }
 class FighterSprite extends Sprite {
-    constructor({ position, velocity, color, imageSrc, isBackground = false, scale = 1, frames = 1, offset = { x: 0, y: 0 } }) {
+    constructor({ position, velocity, color, imageSrc, isBackground = false, scale = 1, frames = 1, offset = { x: 0, y: 0 }, sprites }) {
         // Llamamos a super solo con los argumentos esperados por Sprite
         super({ position, imageSrc, isBackground, scale, frames, offset });
 
@@ -95,6 +95,13 @@ class FighterSprite extends Sprite {
         this.currentFrame = 0;
         this.framesElapsed = 0;
         this.framesHold = 5;
+        this.sprites=sprites;
+
+
+        for (const sprite in this.sprites){
+            sprites[sprite].image = new Image();
+            sprites[sprite].image.src = sprites[sprite].imageSrc;
+        }
     }
 
     update() {
