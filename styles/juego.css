@@ -1,5 +1,8 @@
 *{
     box-sizing: border-box;
+    font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 body, html {
     margin: 0;
@@ -19,11 +22,19 @@ body, html {
 .contvida{
     height: 30px;
     width: 100%;
+    border-top: 4px solid white;
+    border-bottom: 4px solid white;
 }
-.vida{
-    background-color: yellow;
-    height: 30px;
+.v1{
+    border-left: 4px solid white;
 }
+.v2{
+    border-right: 4px solid white;
+}
+/* .vida{
+    
+    
+} */
 .p1{
     top: 0;
     width: 100%;
@@ -37,9 +48,11 @@ body, html {
     bottom: 0;
 }
 .temporizador{
-    background-color: red;
-    height: 100px;
+    background-color: black;
+    height: 50px;
     width: 100px;
+    color: white;
+    border: 4px solid white;
 }
 
 
