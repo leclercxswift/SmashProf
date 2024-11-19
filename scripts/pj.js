@@ -141,17 +141,95 @@ function createCharacter1(characterData) {
                 }
             });
 
-        case "olivia rodrigo":
+        case "mauricio xd":
             return new FighterSprite({
-                position: { x: 20, y: 620 },
-                velocity: { x: 0, y: 10 },
-                color: "purple",
-                offset: { x: 215, y: 150 },
-                imageSrc: characterData.img,
-                frames: 8,
-                scale: 2.5,
-                sprites: { /* Aquí agregar las imágenes del personaje Olivia */ },
-                attackBox: { offset: { x: 100, y: 50 }, width: 160, height: 50 }
+                position: {
+                    x: 20,
+                    y: 620
+                },
+                velocity: {
+                    x: 0,
+                    y: 10
+                },
+                color: "red",
+                offset: {
+                    x: 50,
+                    y: -15
+                },
+                imageSrc: "../assets/Mauricio/Idle.png",
+                frames:1,
+                scale:1.5,
+                sprites: {
+                    idle: {
+                        imageSrc: "../assets/Mauricio/Idle.png",
+                        frames: 1
+                    },
+                    run: {
+                        imageSrc: "../assets/Mauricio/Run.png",
+                        frames: 9
+                    },
+                    jump: {
+                        imageSrc: "../assets/Mauricio/Jump.png",
+                        frames: 3
+                    },
+                    attack1: {
+                        imageSrc: "../assets/Mauricio/Attack1.png",
+                        frames: 4
+                    }
+                },
+                attackBox: {
+                    offset: {
+                        x: 40,
+                        y: 50
+                    },
+                    width: 30,
+                    height: 50
+                }
+            });
+            case "rodrigo xd":
+            return new FighterSprite({
+                position: {
+                    x: 20,
+                    y: 620
+                },
+                velocity: {
+                    x: 0,
+                    y: 10
+                },
+                color: "red",
+                offset: {
+                    x: 50,
+                    y: -15
+                },
+                imageSrc: "../assets/Rodrigo/Idle.png",
+                frames:1,
+                scale:1.5,
+                sprites: {
+                    idle: {
+                        imageSrc: "../assets/Rodrigo/Idle.png",
+                        frames: 1
+                    },
+                    run: {
+                        imageSrc: "../assets/Rodrigo/Run.png",
+                        frames: 9
+                    },
+                    jump: {
+                        imageSrc: "../assets/Rodrigo/Jump.png",
+                        frames: 3
+                    },
+                    attack1: {
+                        imageSrc: "../assets/Rodrigo/Attack1.png",
+                        frames: 4
+                    }
+                },
+                attackBox: {
+                    offset: {
+                        x: 40,
+                        y: 50
+                    },
+                    width: 30,
+                    height: 50
+                }
             });
 
         default:
@@ -300,17 +378,95 @@ function createCharacter2(characterData) {
                 }
             });
 
-        case "olivia rodrigo":
+        case "mauricio xd":
             return new FighterSprite({
-                position: { x: 20, y: 620 },
-                velocity: { x: 0, y: 10 },
-                color: "purple",
-                offset: { x: 215, y: 150 },
-                imageSrc: characterData.img,
-                frames: 8,
-                scale: 2.5,
-                sprites: { /* Aquí agregar las imágenes del personaje Olivia */ },
-                attackBox: { offset: { x: 100, y: 50 }, width: 160, height: 50 }
+                position: {
+                    x: 1230,
+                    y: 620
+                },
+                velocity: {
+                    x: 0,
+                    y: 10
+                },
+                color: "red",
+                offset: {
+                    x: 50,
+                    y: -15
+                },
+                imageSrc: "../assets/Mauricio/IdleLeft.png",
+                frames:1,
+                scale:1.5,
+                sprites: {
+                    idle: {
+                        imageSrc: "../assets/Mauricio/IdleLeft.png",
+                        frames: 1
+                    },
+                    run: {
+                        imageSrc: "../assets/Mauricio/RunLeft.png",
+                        frames: 9
+                    },
+                    jump: {
+                        imageSrc: "../assets/Mauricio/JumpLeft.png",
+                        frames: 3
+                    },
+                    attack1: {
+                        imageSrc: "../assets/Mauricio/Attack1Left.png",
+                        frames: 5
+                    }
+                },
+                attackBox: {
+                    offset: {
+                        x: -20,
+                        y: 50
+                    },
+                    width: 30,
+                    height: 50
+                }
+            });
+            case "rodrigo xd":
+            return new FighterSprite({
+                position: {
+                    x: 1230,
+                    y: 620
+                },
+                velocity: {
+                    x: 0,
+                    y: 10
+                },
+                color: "red",
+                offset: {
+                    x: 50,
+                    y: -15
+                },
+                imageSrc: "../assets/Rodrigo/IdleLeft.png",
+                frames:1,
+                scale:1.5,
+                sprites: {
+                    idle: {
+                        imageSrc: "../assets/Rodrigo/IdleLeft.png",
+                        frames: 1
+                    },
+                    run: {
+                        imageSrc: "../assets/Rodrigo/RunLeft.png",
+                        frames: 9
+                    },
+                    jump: {
+                        imageSrc: "../assets/Rodrigo/JumpLeft.png",
+                        frames: 3
+                    },
+                    attack1: {
+                        imageSrc: "../assets/Rodrigo/Attack1Left.png",
+                        frames: 4
+                    }
+                },
+                attackBox: {
+                    offset: {
+                        x: -20,
+                        y: 50
+                    },
+                    width: 30,
+                    height: 50
+                }
             });
 
         default:

@@ -110,7 +110,8 @@ class FighterSprite extends Sprite {
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
         // Dibujar el atkbox
-        //c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        
+        c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
