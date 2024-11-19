@@ -145,14 +145,15 @@ class FighterSprite extends Sprite {
     }
 
     switchSprite(sprite) {
+        
         //sobreescribir las animaciones para permitir ataque
         if (this.image === this.sprites.attack1.image && this.currentFrame < this.sprites.attack1.frames - 1) return;
         //sobreescribir las animaciones para recibir daño
-        if (this.image === this.sprites.takeHit.image && this.currentFrame < this.sprites.takeHit.frames - 1) return;
-
+        //if (this.image === this.sprites.takeHit.image && this.currentFrame < this.sprites.takeHit.frames - 1) return;
+        
         switch (sprite) {
             case 'idle':
-                if (this.image !== this.sprites.idle.image){
+                if (this.sprites.idle && this.image !== this.sprites.idle.image){
                     this.image = this.sprites.idle.image;
                     this.frames=this.sprites.idle.frames;
                     this.currentFrame = 0;
@@ -160,7 +161,7 @@ class FighterSprite extends Sprite {
                 
                 break;
             case 'run':
-                if (this.image !== this.sprites.run.image){
+                if (this.sprites.run && this.image !== this.sprites.run.image){
                     this.image = this.sprites.run.image;
                     this.frames=this.sprites.run.frames;
                     this.currentFrame = 0;
@@ -168,7 +169,7 @@ class FighterSprite extends Sprite {
                 
                 break;
             case 'jump':
-                if (this.image !== this.sprites.jump.image){
+                if (this.sprites.jump && this.image !== this.sprites.jump.image){
                     this.image = this.sprites.jump.image;
                     this.frames=this.sprites.jump.frames;
                     this.currentFrame = 0;
@@ -176,21 +177,21 @@ class FighterSprite extends Sprite {
                 
                 break;
             case 'fall':
-                if (this.image !== this.sprites.fall.image){
+                if (this.sprites.fall && this.image !== this.sprites.fall.image){
                     this.image = this.sprites.fall.image;
                     this.frames=this.sprites.fall.frames;
                     this.currentFrame = 0;
                 }
                 break;
             case 'attack1':
-                if (this.image !== this.sprites.attack1.image){
+                if (this.sprites.attack1 && this.image !== this.sprites.attack1.image){
                     this.image = this.sprites.attack1.image;
                     this.frames=this.sprites.attack1.frames;
                     this.currentFrame = 0;
                 }
                 break;
             case 'takeHit':
-                    if (this.image !== this.sprites.takeHit.image){
+                    if (this.sprites.takeHit && this.image !== this.sprites.takeHit.image){
                         this.image = this.sprites.takeHit.image;
                         this.frames=this.sprites.takeHit.frames;
                         this.currentFrame = 0;
