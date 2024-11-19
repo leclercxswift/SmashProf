@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Character Selection</title>
+    <link rel="stylesheet" href="styles/select.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Protest+Strike&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="main-container">
+        
+        <div id="container">
+            <div id="image">
+                <h1 id="name">David jajalol</h1>
+                <img id="img" src="assets/cs/David.png" alt="David">
+            </div>
+            <div id="controls">
+                <button id="david" onclick="ChangeCharacter('David')">David</button>
+                <button id="pablo" onclick="ChangeCharacter('Pablo')">Pablo</button>
+                <button id="pedro" onclick="ChangeCharacter('Pedro')">Pedro</button>
+                <button id="olivia" onclick="ChangeCharacter('olivia')">Olivia</button>
+                <button id="olivia" onclick="ChangeCharacter('olivia')">Olivia</button>
+                <button id="olivia" onclick="ChangeCharacter('olivia')">Olivia</button>
+            </div>
+            
+        </div>
+
+       
+        <div id="selection">
+            <div id="players">
+                <div id="j1">
+                    <h3>J1: Ninguno</h3>
+                    <img id="j1-img" src="" alt="No seleccionado" style="display: none;">
+                </div>
+                <div id="j2">
+                    <h3>J2: Ninguno</h3>
+                    <img id="j2-img" src="" alt="No seleccionado" style="display: none;">
+                </div>
+            </div>
+            <div id="info">
+                <button onclick="SelectCharacter('J1')">Seleccionar J1</button>
+                <button onclick="SelectCharacter('J2')">Seleccionar J2</button>
+                <button id="start-game" onclick="startGame()">Iniciar partida</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        localStorage.removeItem("J1");
+        localStorage.removeItem("J2");
+        let currentCharacter = {
+            name: "David jajalol",
+            img: "assets/cs/David.png"
+        };
+
+        function ChangeCharacter(character) {
+            const data = {
+                "David": { name: "David jajalol", img: "assets/cs/David.png" },
+                "Pablo": { name: "Pablo johelista", img: "assets/cs/Pablo.png" },
+                "Pedro": { name: "Pedro Chau", img: "assets/cs/Pedro.png" },
+                "olivia": { name: "olivia rodrigo", img: "assets/cs/olivia-rodrigo.jpg" }
+            };
+
+            currentCharacter = data[character];
+            document.getElementById("img").src = currentCharacter.img;
+            document.getElementById("name").innerHTML = currentCharacter.name;
+        }
+        
+        function SelectCharacter(player) {
+            if (player === "J1") {
+                document.getElementById("j1").querySelector("h3").innerText = `J1: ${currentCharacter.name}`;
+                const img = document.getElementById("j1-img");
+                img.src = currentCharacter.img;
+                img.style.display = "block";
+                localStorage.setItem("J1", JSON.stringify(currentCharacter));
+                
+            } else if (player === "J2") {
+                document.getElementById("j2").querySelector("h3").innerText = `J2: ${currentCharacter.name}`;
+                const img = document.getElementById("j2-img");
+                img.src = currentCharacter.img;
+                img.style.display = "block";
+                localStorage.setItem("J2", JSON.stringify(currentCharacter));
+            }
+        }
+        
+        function startGame() {
+    const j1Character = JSON.parse(localStorage.getItem("J1"));
+    const j2Character = JSON.parse(localStorage.getItem("J2"));
+
+    if (j1Character && j2Character) {
+        window.location.href = "juego.html";
+    } else {
+        alert("Ambos jugadores deben seleccionar un personaje antes de iniciar la partida.");
+    }
+}
+    </script>
+</body>
+</html>
