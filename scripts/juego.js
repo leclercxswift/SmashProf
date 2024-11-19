@@ -93,8 +93,10 @@ function colisionRectangulo({ rectangle1, rectangle2 }) {
     );
 }
 
+let gameOver = false;
 function determineWinner ({ player, enemy, timerId }) {
     clearTimeout(timerId);
+    gameOver = true;
     document.querySelector("#displayText").style.display = 'flex'
     if (player.health === enemy.health) {
        
@@ -108,8 +110,19 @@ function determineWinner ({ player, enemy, timerId }) {
         
         document.querySelector("#displayText").innerHTML = 'Gana J2'
     }
+    document.querySelector("#reloadButton").style.display = "flex";
+    document.querySelector("#SelectButton").style.display = "flex";
+    document.querySelector("#menuButton").style.display = "flex";
 }
-
+document.querySelector("#reloadButton").addEventListener("click", () => {
+    location.reload(); // Recargar la página
+});
+document.querySelector("#SelectButton").addEventListener("click", () => {
+    window.location.href = "select.html";
+});
+document.querySelector("#menuButton").addEventListener("click", () => {
+    window.location.href = "index.html";
+});
 let timer=60
 let timerId
 function decreaseTimer() {
@@ -212,6 +225,7 @@ resizeCanvasAndPlatforms();
 animate();
 
 window.addEventListener("keydown", (event) => {
+    if (gameOver) return;
     console.log(event.key);
     switch (event.key) {
         case 'd':
@@ -272,6 +286,7 @@ window.addEventListener("keydown", (event) => {
 
 
 window.addEventListener("keyup", (event) => {
+    if (gameOver) return;
     switch (event.key) {
         case 'd':
             keys.d.pressed = false;

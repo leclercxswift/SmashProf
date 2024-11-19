@@ -68,3 +68,68 @@ body, html {
     color: aliceblue;
     display: none;
 }
+
+#reloadButton{
+    display: none; 
+        position: absolute; 
+        top: 30%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        color: white; 
+        cursor: pointer; 
+        padding: 15px 25px;
+        font-size: 25px;
+        font-family: sans-serif;
+        font-weight: bold;
+        border-radius: 3px;
+        box-shadow: 0px 1px 4px -2px #333;
+        text-shadow: 0px -1px #333;
+        border-radius: 10px;
+        background: linear-gradient(blue,skyblue);
+        font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+#SelectButton{
+    display: none; 
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        color: white; 
+        cursor: pointer; 
+        padding: 15px 25px;
+        font-size: 25px;
+        font-family: sans-serif;
+        font-weight: bold;
+        border-radius: 3px;
+        box-shadow: 0px 1px 4px -2px #333;
+        text-shadow: 0px -1px #333;
+        border-radius: 10px;
+        background: linear-gradient(blue,skyblue);
+        font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#menuButton{
+    display: none; 
+        position: absolute; 
+        top: 70%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        color: white; 
+        cursor: pointer; 
+        padding: 15px 25px;
+        font-size: 25px;
+        font-family: sans-serif;
+        font-weight: bold;
+        border-radius: 3px;
+        box-shadow: 0px 1px 4px -2px #333;
+        text-shadow: 0px -1px #333;
+        border-radius: 10px;
+        background: linear-gradient(blue,skyblue);
+        font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
