@@ -3,47 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>SmashProf</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/index.css">
   </head>
-  <body class="welcome">
-    <span id="splash-overlay" class="splash"></span>
-    <span id="welcome" class="z-depth-4"></span>
-   
-    <header class="navbar-fixed"> 
-      <nav class="row">
-        <div class="col s12">
-          <ul class="right">
-            <li class="right">
-              <a href="" target="_blank" class="fa fa-twitter-square fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
-            </li>
-            <li class="right">
-              <a href="" target="_blank" class="fa fa-github-square fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  <body class="game-menu">
+    <header class="main-header">
+      <a href="https://github.com/leclercxswift/SmashProf" target="_blank" class="github-link" aria-label="GitHub">
+        <i class="fa fa-github"></i>
+      </a>
     </header>
-  
-    <main class="valign-wrapper">
-      <span class="container grey-text text-lighten-1 ">
-
-        <h1 class="title grey-text text-lighten-3 text-center mb-5">Jueguito Bonito</h1>
-  
-        <button class="custom-btn btn-5" onclick="window.location.href='select.html'"><span>Jugar</span></button>
-        <button class="custom-btn btn-5"><span>Opciones</span></button>
-      </span>
+    <main>
+      <h1 class="game-title">Smash Prof</h1>
+      <div class="menu">
+        <button class="menu-btn" onclick="window.location.href='select.html'">Jugar</button>
+      </div>
+        <div class="floating-controls">
+          <h5>Controles</h5>
+          <p><strong>Jugador 1:</strong> W, A, S, D, Espacio (Ataque)</p>
+          <p><strong>Jugador 2:</strong> Flechas, Enter (Ataque)</p>
+        </div>
     </main>
-  
-  
-    <div class="floating-controls bg-light p-3 shadow rounded">
-      <h5 class="text-center">Controles</h5>
-      <p><strong>Jugador 1:</strong> W, A, S, D, Espacio (Ataque)</p>
-      <p><strong>Jugador 2:</strong> Flechas de dirección, Enter (Ataque)</p>
-  </div>
   </body>
 </html>
