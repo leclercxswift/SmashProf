@@ -10,7 +10,20 @@ body, html {
     height: 100%;
     width: 100%;
   }
-
+  body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000; /* Opcional: fondo para el viewport */
+    font-family: 'Press Start 2P', 'Protest Strike', sans-serif; /* Mantén la fuente */
+  }
+  canvas {
+    border: 2px solid #fff; /* Opcional: borde visible */
+    display: block;
+}
 #canvas{
     height: 100%;
     width: 100%;
